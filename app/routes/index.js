@@ -1,27 +1,28 @@
+const middlewares = require("../middlewares");
+
 module.exports = (app, passport) => {
 
-    function isLoggedIn(req, res, next) {
-        if (req.isAuthenticated()) return next();
-        else res.redirect("/login");
-    }
-
-    app.get("/", isLoggedIn, (req, res) => {
+    app.get("/", middlewares.forceLogin, (req, res) => {
         res.render("index");
     });
 
     app.get("/login", (req, res) => {
-        res.render("login");
+        res.redirect("/auth/twitter");
     });
 
     app.get("/logout", (req, res) => {
         req.logout();
-        res.redirect("/login");
+        res.redirect("/");
     });
 
     app.get("/auth/twitter", passport.authenticate("twitter"));
 
     app.get("/auth/twitter/callback", passport.authenticate("twitter", {
         successRedirect: "/",
-        failureRedirect: "/login"
+        failureRedirect: "/"
     }));
+
+    app.get("*", (req, res) => {
+        res.redirect("/");
+    });
 };
