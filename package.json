@@ -1,0 +1,33 @@
+{
+  "name": "nightlife",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": "7.8.0"
+  },
+  "author": "ColeTrammer",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "express": "^4.15.3",
+    "express-session": "^1.15.3",
+    "mongoose": "^4.10.2",
+    "passport": "^0.3.2",
+    "passport-github": "^1.1.0",
+    "pug": "^2.0.0-rc.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ColeTrammer/nightlife.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ColeTrammer/nightlife/issues"
+  },
+  "homepage": "https://github.com/ColeTrammer/nightlife#readme",
+  "description": ""
+}
