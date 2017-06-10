@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const User = new mongoose.Schema({
-    github: {
+    twitter: {
         id: String,
         displayName: String,
         username: String

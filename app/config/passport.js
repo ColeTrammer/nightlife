@@ -1,4 +1,4 @@
-const GitHubStrategy = require("passport-github").Strategy;
+const TwitterStrategy = require("passport-twitter").Strategy;
 const User = require("../models/users");
 const configAuth = require("./auth");
 
@@ -13,17 +13,17 @@ module.exports = (passport) => {
         });
     });
 
-    passport.use(new GitHubStrategy(configAuth.githubAuth, (token, refresh, profile, cb) => {
+    passport.use(new TwitterStrategy(configAuth.twitterAuth, (token, refresh, profile, cb) => {
         process.nextTick(() => {
-            User.findOne({"github.id": profile.id}, (err, user) => {
+            User.findOne({"twitter.id": profile.id}, (err, user) => {
                 if (err) return cb(err);
                 if (user) return cb(null, user);
                 else {
                     let newUser = new User();
 
-                    newUser.github.id = profile.id;
-                    newUser.github.username = profile.username;
-                    newUser.github.displayName = profile.displayName;
+                    newUser.twitter.id = profile.id;
+                    newUser.twitter.username = profile.username;
+                    newUser.twitter.displayName = profile.displayName;
 
                     newUser.save((err) => {
                         if (err) throw err;
