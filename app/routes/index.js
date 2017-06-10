@@ -2,7 +2,7 @@ const middlewares = require("../middlewares");
 
 module.exports = (app, passport) => {
 
-    app.get("/", middlewares.forceLogin, (req, res) => {
+    app.get("/", (req, res) => {
         res.render("index");
     });
 
