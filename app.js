@@ -1,3 +1,5 @@
+if (process.env.NODE_ENV !== "production")
+    require("dotenv").load();
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
@@ -7,8 +9,6 @@ const session = require("express-session");
 const sass = require("express-compile-sass");
 const flash = require("connect-flash");
 const cookieParser = require("cookie-parser");
-if (process.env.NODE_ENV !== "production")
-    require("dotenv").load();
 require("./app/config/passport")(passport);
 
 const app = express();
