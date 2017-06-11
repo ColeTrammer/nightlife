@@ -1,4 +1,16 @@
 extends layout.pug
 
+block head
+    if user
+        script const IS_LOGGED_IN=true;
+    else
+        script const IS_LOGGED_IN=false;
+
 block content
-    h3 Hello World!
+    form
+        .form-group
+            label(for="location") Where are you?
+            .input-group
+                input.form-control#location(type="text" value=search ? search : "")
+                span.input-group-btn #[button.btn.btn-primary#search Search]
+    .list-group#results

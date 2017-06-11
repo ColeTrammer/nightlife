@@ -1,20 +1,17 @@
 const middlewares = require("../middlewares");
-const yelp = require("yelp-fusion").client(process.env.YELP_TOKEN);//need to update this in 6 months apparently
-console.log(process.env)
+const bars = require("../controllers/bars.js");
 
 module.exports = (app, passport) => {
 
     app.get("/", (req, res) => {
-        yelp.search({
-            categories: "bars",
-            location: "San Diego",
-            term: "Beer"
-        }).then(d => {
-            res.send(d);
-        }).catch(e => {
-            console.log(e);
-        })
+        res.render("index", {search: req.session.search});
     });
+
+    app.get("/api/search", bars.search);
+
+    app.get("/api/add_user/:id", middlewares.requireLogin, middlewares.findBar, bars.addUser);
+
+    app.get("/api/remove_user/:id", middlewares.requireLogin, middlewares.findBar, bars.removeUser);
 
     app.get("/login", (req, res) => {
         res.redirect("/auth/twitter");
