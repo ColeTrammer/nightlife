@@ -10,6 +10,9 @@ $(document).ready(() => {
 
 function search(e) {
     const location = $("#location").val();
+    if (!IS_LOGGED_IN) {
+        $("#message").html("<h3>Click on the bar to mark yourself as going to it. You must login to do it though.</h3>");
+    }
     if (location) {
         $.getJSON(`/api/search?location=${location}`, (data) => {
             $("#results").html("");

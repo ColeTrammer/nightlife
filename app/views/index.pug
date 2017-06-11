@@ -13,6 +13,5 @@ block content
             .input-group
                 input.form-control#location(type="text" value=search ? search : "")
                 span.input-group-btn #[button.btn.btn-primary#search Search]
-    if !user
-        h3 Click on the bar to mark yourself as going to it. You must login to do it though.
+    div#message
     .list-group#results
